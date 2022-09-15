@@ -15,3 +15,6 @@ en:
     author_fields_errors:
       message: "Author fields errors"
       detail: "The author fields are not valid"
+    author_not_deleted:
+      message: "Author not deleted"
+      detail: "The author was not deleted"

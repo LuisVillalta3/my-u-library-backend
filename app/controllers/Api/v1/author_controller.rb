@@ -24,13 +24,13 @@ class Api::V1::AuthorController < ApiController
 
   def update
     author = Author.find(params[:id])
-    return render json: author.errors, status: :unprocessable_entity if !author.update(author_params)
+    return render_json_error :unprocessable_entity, :author_fields_errors, { errors: author.errors } if !author.update(author_params)
     render json: author, status: :ok
   end
 
   def destroy
     author = Author.find(params[:id])
-    return render json: author.errors, status: :unprocessable_entity if !author.destroy!
+    return render_json_error :conflict, :author_not_deleted if !author.destroy!
     render json: author, status: :ok
   end
 
