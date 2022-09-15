@@ -6,4 +6,9 @@ class User < ApplicationRecord
          jwt_revocation_strategy: JwtDenylist
   # 
   belongs_to :role
+  #
+  validates :email, presence: true
+  validates :email, uniqueness: { case_sensitive: true }, on: :create
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end
