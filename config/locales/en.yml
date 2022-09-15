@@ -18,3 +18,16 @@ en:
     author_not_deleted:
       message: "Author not deleted"
       detail: "The author was not deleted"
+    # GENRES
+    genre_not_found:
+      message: "Genre not found"
+      detail: "The genre you are looking for does not exist"
+    missing_genre_params:
+      message: "Missing genre params"
+      detail: "The genre params are missing"
+    genre_fields_errors:
+      message: "Genre fields errors"
+      detail: "The genre fields are not valid"
+    genre_not_deleted:
+      message: "Genre not deleted"
+      detail: "The genre was not deleted"

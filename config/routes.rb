@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     namespace :v1 do
-      resources :author
+      resources :author, only: %i[index show create update destroy]
+      resources :genres, only: %i[index show create update destroy]
     end
   end
 end
