@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   rescue_from ActionController::RoutingError do |e|
     render_json_error :not_found, :route_not_found

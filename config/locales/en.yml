@@ -44,3 +44,9 @@ en:
     book_not_deleted:
       message: "Book not deleted"
       detail: "The book was not deleted"
+    role_not_found:
+      message: "Role not found"
+      detail: "The role you are looking for does not exist"
+    missing_role_params:
+      message: "Missing role params"
+      detail: "The role params are missing"
