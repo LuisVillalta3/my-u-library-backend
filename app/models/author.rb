@@ -1,4 +1,5 @@
 class Author < ApplicationRecord
+  has_many :books, dependent: :destroy
   # VALIDATIONS
   validates :firstName, presence: true
   validates :lastName, presence: true

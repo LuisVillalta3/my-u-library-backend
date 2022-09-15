@@ -31,3 +31,16 @@ en:
     genre_not_deleted:
       message: "Genre not deleted"
       detail: "The genre was not deleted"
+    # BOOKS
+    book_not_found:
+      message: "Book not found"
+      detail: "The book you are looking for does not exist"
+    missing_book_params:
+      message: "Missing book params"
+      detail: "The book params are missing"
+    book_fields_errors:
+      message: "Book fields errors"
+      detail: "The book fields are not valid"
+    book_not_deleted:
+      message: "Book not deleted"
+      detail: "The book was not deleted"

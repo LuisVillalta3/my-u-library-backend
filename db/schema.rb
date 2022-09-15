@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_15_181648) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_184137) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_181648) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.text "description", default: "No description provided"
+    t.bigint "author_id", null: false
+    t.bigint "genre_id", null: false
+    t.date "published_date", default: "2022-09-15"
+    t.integer "in_stock", default: 0
+    t.boolean "available", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["genre_id"], name: "index_books_on_genre_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.text "description", default: "No description provided."
@@ -30,4 +44,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_181648) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "books", "authors"
+  add_foreign_key "books", "genres"
 end
