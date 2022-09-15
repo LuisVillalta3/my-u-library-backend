@@ -54,4 +54,8 @@ group :development do
   # gem "spring"
 end
 
+gem "devise", "~> 4.8"
+gem "jwt", "~> 2.5"
 gem 'rack-cors'
+
+gem "devise-jwt", "~> 0.9.0"
