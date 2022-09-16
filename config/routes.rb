@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :genres, only: %i[index show create update destroy]
       resources :books, only: %i[index show create update destroy]
       resources :roles, only: %i[index]
+      resources :request_statuses, only: %i[index]
     end
   end
 end

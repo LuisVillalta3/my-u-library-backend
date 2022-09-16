@@ -7,4 +7,16 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 roles = Role.create([{ name: "Librarian", description: "Librarian" }, { name: "Student", description: "Student" }])
-User.create(email: "luis@ejemplo.com", password: '123456', password_confirmation: '123456', role: roles.first)
+
+RequestStatus.create([
+  {
+    name: "Returned",
+    description: "Returned"
+  },
+  {
+    name: "Borrowed",
+    description: "Borrowed"
+  },
+])
+
+User.create(email: "luisvillalta@ejemplo.com", password: '123456', password_confirmation: '123456', role: roles.first, first_name: 'Luis', last_name: 'Villalta')
