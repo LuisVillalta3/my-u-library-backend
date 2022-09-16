@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_15_234710) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_16_000707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_234710) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["genre_id"], name: "index_books_on_genre_id"
+  end
+
+  create_table "check_out_requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.bigint "request_status_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_check_out_requests_on_book_id"
+    t.index ["request_status_id"], name: "index_check_out_requests_on_request_status_id"
+    t.index ["user_id"], name: "index_check_out_requests_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -80,5 +91,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_234710) do
 
   add_foreign_key "books", "authors"
   add_foreign_key "books", "genres"
+  add_foreign_key "check_out_requests", "books"
+  add_foreign_key "check_out_requests", "request_statuses"
+  add_foreign_key "check_out_requests", "users"
   add_foreign_key "users", "roles"
 end
