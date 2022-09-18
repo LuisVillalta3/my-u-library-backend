@@ -50,3 +50,6 @@ en:
     missing_role_params:
       message: "Missing role params"
       detail: "The role params are missing"
+    user_fields_errors:
+      message: "User fields errors"
+      detail: "The user fields are not valid"

@@ -8,7 +8,22 @@ class Api::V1::AuthorController < ApiController
   end
 
   def index
-    render json: Author.all
+    page = params[:page] || nil
+    limit = params[:rowsPerPage] || nil
+    
+    return render json: Author.all if !page || !limit
+
+    paginate(page, limit)
+  end
+
+  def paginate(page, limit)
+    offset = (page.to_i - 1) * limit.to_i
+    @authors = Author.offset(offset).limit(limit)
+
+    render json: {
+      rows: @authors,
+      total: Author.count,
+    }
   end
 
   def show

@@ -8,7 +8,19 @@ class Api::V1::BooksController < ApiController
   end
 
   def index
-    render json: Book.all
+    page = params[:page] || 1
+    limit = params[:rowsPerPage] || 10
+    offset = (page.to_i - 1) * limit.to_i
+    @books = Book.offset(offset).limit(limit)
+
+    @books = @books.where('title ILIKE ?', "%#{params[:title]}%") if params[:title].present?
+    @books = @books.where('author_id = ?', params[:author_id].to_i) if params[:author_id].present?
+    @books = @books.where('genre_id = ?', params[:genre_id].to_i) if params[:genre_id].present?
+
+    render json: {
+      rows: @books,
+      total: Book.count,
+    }
   end
 
   def show
