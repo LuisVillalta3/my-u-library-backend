@@ -20,6 +20,9 @@ class Api::V1::AuthorController < ApiController
     offset = (page.to_i - 1) * limit.to_i
     @authors = Author.offset(offset).limit(limit)
 
+    @authors = @authors.where("firstName ILIKE ?", "%#{params[:firstName]}%") if params[:firstName].present?
+    @authors = @authors.where("last_name LIKE ?", "%#{params[:lastName]}%") if params[:lastName]
+
     render json: {
       rows: @authors,
       total: Author.count,

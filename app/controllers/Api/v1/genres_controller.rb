@@ -8,7 +8,24 @@ class Api::V1::GenresController < ApiController
   end
 
   def index
-    render json: Genre.all
+    page = params[:page] || nil
+    limit = params[:rowsPerPage] || nil
+    
+    return render json: Genre.all if !page || !limit
+
+    paginate(page, limit)
+  end
+
+  def paginate(page, limit)
+    offset = (page.to_i - 1) * limit.to_i
+    @genres = Genre.offset(offset).limit(limit)
+
+    @genres = @genres.where("name LIKE ?", "%#{params[:search]}%") if params[:search]
+
+    render json: {
+      rows: @genres,
+      total: Genre.count,
+    }
   end
 
   def show
