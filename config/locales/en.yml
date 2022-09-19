@@ -53,3 +53,9 @@ en:
     user_fields_errors:
       message: "User fields errors"
       detail: "The user fields are not valid"
+    missing_user_params:
+      message: "Missing user params"
+      detail: "The user params are missing"
+    user_not_found:
+      message: "User not found"
+      detail: "The user you are looking for does not exist"

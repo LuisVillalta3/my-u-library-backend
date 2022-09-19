@@ -55,7 +55,7 @@ group :development do
 end
 
 gem "devise", "~> 4.8"
-gem "jwt", "~> 2.5"
-gem 'rack-cors'
-
 gem "devise-jwt", "~> 0.9.0"
+gem "jwt", "~> 2.5"
+gem 'dotenv-rails'
+gem 'rack-cors'
