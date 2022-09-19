@@ -18,17 +18,18 @@ class Api::V1::BooksController < ApiController
     @books = @books.where('genre_id = ?', params[:genre_id].to_i) if params[:genre_id].present?
 
     render json: {
-      rows: @books,
+      rows: @books.as_json(include: [:author, :genre]),
       total: Book.count,
     }
   end
 
   def show
-    render json: Book.find(params[:id])
+    render json: Book.find(params[:id]), include: [:author, :genre]
   end
 
   def create
     book = Book.new(book_params)
+    book.available = book.in_stock > 0
 
     return render_json_error :unprocessable_entity, :book_fields_errors, { errors: book.errors } if !book.save
     render json: book, status: :created
@@ -36,6 +37,7 @@ class Api::V1::BooksController < ApiController
 
   def update
     book = Book.find(params[:id])
+    book.available = book.in_stock > 0
     return render_json_error :unprocessable_entity, :book_fields_errors, { errors: book.errors } if !book.update(book_params)
     render json: book, status: :ok
   end
