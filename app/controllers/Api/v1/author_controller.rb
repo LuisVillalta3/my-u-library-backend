@@ -54,6 +54,6 @@ class Api::V1::AuthorController < ApiController
 
   private
   def author_params
-    params.require(:author).permit(:firstName, :lastName, :nacionality, :birthday)
+    params.require(:author).permit(:first_name, :last_name, :nacionality, :birthday)
   end
 end
