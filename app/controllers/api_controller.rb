@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authorize_request, except: :login
 
   rescue_from ActionController::RoutingError do |e|
     render_json_error :not_found, :route_not_found
@@ -17,5 +17,19 @@ class ApiController < ApplicationController
     error[:detail] = detail unless detail.empty?
 
     render json: { errors: [error] }, status: status
+  end
+
+  def authorize_request
+    header = request.headers['Authorization']
+    header = header.split(' ').last if header
+    begin
+      @decoded = JsonWebToken.decode(header)
+      @user = JSON.parse @decoded[:user]
+      @current_user = User.find(@user['id'])
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { errors: e.message }, status: :unauthorized
+    rescue JWT::DecodeError => e
+      render json: { errors: e.message }, status: :unauthorized
+    end
   end
 end
