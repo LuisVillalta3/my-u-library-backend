@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :roles, only: %i[index]
       resources :users, only: %i[index show create]
       resources :request_statuses, only: %i[index]
+      resources :check_out_requests, only: %i[index create update]
     end
   end
 end

@@ -7,7 +7,6 @@ class Api::V1::AuthController < ApiController
     @user = User.find_by_email(params[:email])
     if @user && compare_passwords(@user.encrypted_password, params[:password])
       time = Time.now.to_i + 60.minutes.to_i
-      puts time
       token = JsonWebToken.encode({user: @user.to_json(include: :role), time: time})
       render json: { token: token }, status: :ok
     else

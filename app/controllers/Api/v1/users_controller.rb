@@ -27,18 +27,18 @@ class Api::V1::UsersController < ApiController
 
   def create
     @user = User.new(user_params)
-    @pass = generate_password
-    @user.password = @pass
-    @user.password_confirmation = @pass
+    # @pass = generate_password
+    # @user.password = @pass
+    # @user.password_confirmation = @pass
 
     return render_json_error :unprocessable_entity, :user_fields_errors, { errors: @user.errors } if !@user.save
-    UserMailer.with(user: @user, pass: @pass).user_created.deliver_now
+    # UserMailer.with(user: @user, pass: @pass).user_created.deliver_now
     render json: @user, status: :created
   end
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :role_id)
+    params.require(:user).permit(:first_name, :last_name, :email, :role_id, :password, :password_confirmation)
   end
 
   def generate_password

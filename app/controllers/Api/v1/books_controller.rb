@@ -24,7 +24,7 @@ class Api::V1::BooksController < ApiController
   end
 
   def show
-    render json: Book.find(params[:id]), include: [:author, :genre]
+    render json: Book.find(params[:id]), include: [:author, :genre, :check_out_requests]
   end
 
   def create

@@ -3,6 +3,7 @@ class CreateRequestStatuses < ActiveRecord::Migration[7.0]
     create_table :request_statuses do |t|
       t.string :name
       t.text :description
+      t.string :code
 
       t.timestamps
     end

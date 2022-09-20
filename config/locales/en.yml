@@ -59,3 +59,6 @@ en:
     user_not_found:
       message: "User not found"
       detail: "The user you are looking for does not exist"
+    check_out_request_fields_errors:
+      message: "Check out request fields errors"
+      detail: "The check out request fields are not valid"

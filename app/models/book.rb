@@ -2,6 +2,8 @@ class Book < ApplicationRecord
   belongs_to :author
   belongs_to :genre
   # 
+  has_many :check_out_requests, dependent: :destroy
+  # 
   validates :title, presence: true
   validates :title, uniqueness: { case_sensitive: true }, on: :create
   validates :author_id, presence: true

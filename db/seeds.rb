@@ -11,11 +11,13 @@ roles = Role.create([{ name: "Librarian", description: "Librarian", code: 'libra
 RequestStatus.create([
   {
     name: "Returned",
-    description: "Returned"
+    description: "Returned",
+    code: 'returned'
   },
   {
     name: "Borrowed",
-    description: "Borrowed"
+    description: "Borrowed",
+    code: 'borrowed'
   },
 ])
 
