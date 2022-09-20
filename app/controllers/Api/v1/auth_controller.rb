@@ -6,9 +6,10 @@ class Api::V1::AuthController < ApiController
   def login
     @user = User.find_by_email(params[:email])
     if @user && compare_passwords(@user.encrypted_password, params[:password])
-      token = JsonWebToken.encode(user: @user.to_json(include: :role))
-      time = Time.now + 24.hours.to_i
-      render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M") }, status: :ok
+      time = Time.now.to_i + 60.minutes.to_i
+      puts time
+      token = JsonWebToken.encode({user: @user.to_json(include: :role), time: time})
+      render json: { token: token }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
