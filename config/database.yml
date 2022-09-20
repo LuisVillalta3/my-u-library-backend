@@ -7,16 +7,16 @@ default: &default
 
 development:
   <<: *default
-  database: my_u_library_development
-  username: postgres
+  database: my_u_library_2_development
+  username: villalta
   password: 123
   host: localhost
   port: 5432
 
 test:
   <<: *default
-  database: my_u_library_test
-  username: postgres
+  database: my_u_library_2_test
+  username: villalta
   password: 123
   host: localhost
   port: 5432

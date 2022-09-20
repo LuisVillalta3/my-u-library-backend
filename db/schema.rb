@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_000707) do
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
-    t.string "firstName"
-    t.string "lastName"
+    t.string "first_name"
+    t.string "last_name"
     t.string "nacionality"
     t.date "birthday"
     t.datetime "created_at", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_000707) do
     t.text "description", default: "No description provided"
     t.bigint "author_id", null: false
     t.bigint "genre_id", null: false
-    t.date "published_date", default: "2022-09-15"
+    t.date "published_date", default: "2022-09-20"
     t.integer "in_stock", default: 0
     t.boolean "available", default: true
     t.datetime "created_at", null: false
@@ -66,12 +66,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_000707) do
   create_table "request_statuses", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.string "code"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

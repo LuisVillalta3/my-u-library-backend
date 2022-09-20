@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: Rails.application.credentials.smtp_config[:from]
+  # default from: Rails.application.credentials.smtp_config[:from]
 
   def user_created
     @user = params[:user]
